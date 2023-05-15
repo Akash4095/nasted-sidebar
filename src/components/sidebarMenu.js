@@ -1,17 +1,27 @@
 import React, { useState, useEffect } from 'react'
-import { Icon } from "semantic-ui-react";
+import { Icon, Transition } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 
 const SidebarMenu = ({ route, isOpen, setIsOpen, key }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [visible, setVisible] = useState(false);
+
     const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
+        if (visible) {
+            setTimeout(() => {
+                setIsMenuOpen(!isMenuOpen);
+            }, 1000)
+        } else {
+            setIsMenuOpen(!isMenuOpen);
+        }
+        setVisible(!visible)
         setIsOpen(true)
     }
 
     useEffect(() => {
         if (!isOpen) {
             setIsMenuOpen(false);
+            setVisible(false)
         }
     }, [isOpen])
 
@@ -32,7 +42,8 @@ const SidebarMenu = ({ route, isOpen, setIsOpen, key }) => {
 
                 </div>
             </div>
-            <div className='menu_transition'>
+
+            <Transition visible={visible} animation='slide right' duration={800}>
                 {
                     isMenuOpen ?
                         <div className='menu_container'>
@@ -45,7 +56,7 @@ const SidebarMenu = ({ route, isOpen, setIsOpen, key }) => {
                                             className="link"
                                             activeClassName="active"
                                         >
-                                            <Icon className="icon"  name={subRoute.icon} title={subRoute.name}></Icon>
+                                            <Icon className="icon" name={subRoute.icon} title={subRoute.name}></Icon>
                                             <div className="link_menu_text" style={{ display: isOpen ? "block" : "none" }}>
                                                 {subRoute.name}
                                             </div>
@@ -54,10 +65,9 @@ const SidebarMenu = ({ route, isOpen, setIsOpen, key }) => {
                                 })
                             }
                         </div>
-                        : null
+                        : <></>
                 }
-            </div>
-
+            </Transition>
         </>
     )
 }

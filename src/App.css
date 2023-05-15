@@ -100,8 +100,5 @@ main {
 .menu_container .link{
   padding-left: 20px;
   border-bottom: #fff 0.5px solid;
-  transition: all 0.8s !important;
-}
-.menu_transition{
-  transition: all 2s !important;
+ 
 }
