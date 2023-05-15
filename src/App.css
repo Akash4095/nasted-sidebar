@@ -10,15 +10,15 @@
 main {
   padding: 10px;
   padding-left: 15px;
-  width: 84vw;
+  width: 82vw;
 }
-
 
 /* Sidebar */
 .sidebar {
   background: rgb(0, 7, 61);
   color: white;
   height: 100vh;
+  transition: all 0.5s ;
 }
 
 .top_section {
@@ -65,4 +65,19 @@ main {
 .link_text {
   white-space: nowrap;
   font-size: 15px;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  gap: 10px;
+  padding: 5px 10px;
+  border-right: 4px solid transparent;
+  transition: all 0.5s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.menu_items{
+  display: flex;
+  gap: 10px;
 }
