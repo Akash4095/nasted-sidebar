@@ -10,6 +10,9 @@ import Analytics from "./components/pages/Analytics";
 import Order from "./components/pages/Order";
 import Saved from "./components/pages/Saved";
 import Setting from "./components/pages/Setting";
+import Profile from './components/pages/Profile';
+import Auth from './components/pages/Auth';
+import Billing from './components/pages/Billing';
 
 function App() {
   return (
@@ -24,6 +27,9 @@ function App() {
           <Route path="/order" element={<Order />} />
           <Route path="/saved" element={<Saved />} />
           <Route path="/settings" element={<Setting />} />
+          <Route path="/settings/profile" element={<Profile />} />
+          <Route path="/settings/auth" element={<Auth />} />
+          <Route path="/settings/billings" element={<Billing />} />
           <Route path="*" element={<> not found</>} />
         </Routes>
       </SideBar>

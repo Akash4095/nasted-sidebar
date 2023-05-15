@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Icon } from "semantic-ui-react";
+import SidebarMenu from "./sidebarMenu";
 import { routes } from "./sidebarRoutes";
 
 
@@ -17,7 +18,11 @@ const SideBar = ({ children }) => {
           <div className="top_section" >
             <div className="link_text" style={{ display: isOpen ? "block" : "none", }}> {" Nasted Sidebar"}</div>
             <div className="bars" style={{ marginLeft: isOpen ? "60px" : "0px" }}>
-              <Icon className="icon" size="large" name="bars" onClick={toggle}></Icon>
+              {
+                isOpen ? <Icon className="icon" size="large" name="close" title="Close" onClick={toggle}></Icon>
+                  :
+                  <Icon className="icon" size="large" name="bars" onClick={toggle}></Icon>
+              }
             </div>
           </div>
 
@@ -25,17 +30,9 @@ const SideBar = ({ children }) => {
             {routes.map((route, index) => {
               if (route.subRoutes) {
                 return (
-                  <div className="menu">
-                    <div className="menu_items">
-                      <Icon className="icon" size="large" name={route.icon} title={route.name}></Icon>
-                      <div className="link_text" style={{ display: isOpen ? "block" : "none", }}>
-                        {route.name}
-                      </div>
-                    </div>
-                    <div>
-                      <Icon name="angle down"></Icon>
-                    </div>
-                  </div>
+                  <>
+                    <SidebarMenu route={route} isOpen={isOpen} key={route.name} setIsOpen={setIsOpen} />
+                  </>
                 )
               }
               return (
